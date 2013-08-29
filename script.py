@@ -6,12 +6,9 @@
 
 import os, urllib2
 
-# dirs = ['root', 'root/css', 'root/js', 'root/i']
-# files = {'css': , 'js': }
-
 dir_file_map = {'root': 'root', 'nodes': {'css': ['style.css', 'normalize.css'], 'js': ['jquery.js', 'app.js'], 'i': []}, 'root_files': ['index.html']}
-
-
+normalize_url = 'http://necolas.github.io/normalize.css/2.1.3/normalize.css'
+jquery_url = 'http://code.jquery.com/jquery-2.0.3.min.js'
 
 def make_dirs(m):
 	val = None
@@ -37,12 +34,12 @@ def make_dirs(m):
 					for fname in val:
 
 						if fname == 'normalize.css':
-							normalize_url = urllib2.urlopen('http://necolas.github.io/normalize.css/2.1.3/normalize.css');
-							normalize_data = normalize_url.read();
+							normalize_url_open = urllib2.urlopen(normalize_url);
+							normalize_data = normalize_url_open.read();
 							make_file(dir_path + '/' + fname, normalize_data)
 						elif fname == 'jquery.js':
-							jquery_url = urllib2.urlopen('http://code.jquery.com/jquery-2.0.3.min.js');
-							jquery_data = jquery_url.read();
+							jquery_url_open = urllib2.urlopen(jquery_url);
+							jquery_data = jquery_url_open.read();
 							make_file(dir_path + '/' + fname, jquery_data)
 						else:
 							make_file(dir_path + '/' + fname)	
